@@ -1,0 +1,29 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: bos-user
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: root
+    username: root
+    url: jdbc:mysql://localhost:3306/bos?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+  jpa:
+    database: mysql #指定数据库
+    show-sql: true #打印sql
+    hibernate:
+      ddl-auto: none #更新表，没有表则创建配合实体类Entity注解使用
+    properties:
+      hibernate:
+        format_sql: true  #格式化SQL
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    use-actual-param-name: true
+  mapper-locations: classpath:mapper/*.xml
+
