@@ -141,6 +141,16 @@ public class CourierServiceImpl implements CourierService {
         return Result.SUCCESS();
     }
 
+    /**
+     * 获取全部快递员id
+     * @return
+     */
+    @Override
+    public Result getCourierID() {
+        List<Courier> couriers = courierMapper.selectList(null);
+        return new Result(ResultCode.SUCCESS,couriers);
+    }
+
     public static <T> List<T> castList(Object obj, Class<T> clazz)
     {
         List<T> result = new ArrayList<T>();

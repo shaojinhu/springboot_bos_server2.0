@@ -4,6 +4,7 @@ import com.bos.base.BaseController;
 import com.bos.basic.service.StandardService;
 import com.bos.pojo.basic.Standard;
 import com.bos.response.Result;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -21,6 +22,7 @@ public class StandardController extends BaseController {
      * @param map
      * @return
      */
+    @RequiresPermissions("STANDARD_API_LIST")
     @PostMapping("getStandardList")
     public Result getStandardList(@RequestBody Map<String,Object> map){
         return standardService.getStandardList(map);

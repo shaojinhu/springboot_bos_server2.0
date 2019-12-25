@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("courier")
-public class CourierConstroller {
+public class CourierController {
 
     @Resource
     private CourierService courierService;
@@ -60,5 +60,11 @@ public class CourierConstroller {
         return courierService.batchCourier(map);
     }
 
-
+    /**
+     *获取全部快递员id
+     */
+    @PostMapping("getCourierID")
+    public Result getCourierID(){
+        return courierService.getCourierID();
+    }
 }

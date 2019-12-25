@@ -65,7 +65,10 @@ public class ShiroConfig {
         Map<String,String> filterMap = new LinkedHashMap<>();
         //放行接口  anon为放行  authc为拦截
         filterMap.put("/user/login","anon");
-        filterMap.put("/logout","logout");
+        filterMap.put("/user/sendMailNumber/**","anon");
+        filterMap.put("/user/updatePasswordByNumber","anon");
+//        filterMap.put("/logout","logout");
+
         //这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
         filterMap.put("/**", "authc");
 
@@ -83,7 +86,7 @@ public class ShiroConfig {
         RedisManager redisManager = new RedisManager();
         redisManager.setHost("localhost");
         redisManager.setPort(6379);
-//        redisManager.getDatabase(0);
+        redisManager.setDatabase(0);
         redisManager.setTimeout(50000);
         redisManager.setPassword(null);
         return redisManager;
@@ -97,6 +100,8 @@ public class ShiroConfig {
     public RedisCacheManager redisCacheManager(){
         RedisCacheManager redisCacheManager = new RedisCacheManager();
         redisCacheManager.setRedisManager(redisManager());//设置缓存
+        redisCacheManager.setPrincipalIdFieldName("userid");//用户的userid作为缓存对象的key
+        //redisCacheManager.setKeyPrefix("");缓存用户信息的前缀
         return redisCacheManager;
     }
 
@@ -110,6 +115,8 @@ public class ShiroConfig {
     public RedisSessionDAO redisSessionDAO(){
         RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
         redisSessionDAO.setRedisManager(redisManager());
+        //session在redis中的保存时间,最好大于session会话超时时间
+        redisSessionDAO.setExpire(-1);
         return redisSessionDAO;
     }
 
@@ -122,6 +129,8 @@ public class ShiroConfig {
         //将我们外部创建的sessionManager会话管管理器进行使用
         CustomSessionManager customSessionManager = new CustomSessionManager();
         customSessionManager.setSessionDAO(redisSessionDAO());//设置sessionDao
+//        customSessionManager.setGlobalSessionTimeout(-10000L);//设置session的过期时间 默认1800000L
+        customSessionManager.setDeleteInvalidSessions(true);//是否开启删除无效的session对象  默认为true
         return customSessionManager;
     }
 

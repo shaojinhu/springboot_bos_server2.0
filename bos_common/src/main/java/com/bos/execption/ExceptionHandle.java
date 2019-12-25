@@ -2,6 +2,8 @@ package com.bos.execption;
 
 import com.bos.response.Result;
 import com.bos.response.ResultCode;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authz.AuthorizationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,4 +30,16 @@ public class ExceptionHandle {
         return r;
     }
 
+    @ExceptionHandler({AuthenticationException.class})//设置捕获异常类型
+    @ResponseBody
+    public Result HandleTwo(HttpServletRequest request, HttpServletResponse response, Exception e){
+        return new Result(ResultCode.LOGIN_USER_NOT_ENABLE_STATE);
+    }
+
+
+    @ExceptionHandler({AuthorizationException.class})//设置捕获异常类型
+    @ResponseBody
+    public Result HandleThree(HttpServletRequest request, HttpServletResponse response, Exception e){
+        return new Result(ResultCode.AUTHERROR);
+    }
 }

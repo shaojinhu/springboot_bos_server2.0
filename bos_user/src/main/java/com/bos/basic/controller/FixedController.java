@@ -64,4 +64,14 @@ public class FixedController extends BaseController {
     public  Result getFixedArea(){
         return fixedAreaService.getFixeArea();
     }
+
+    /**
+     * 根据区域id获得区域下的定区
+     * @param areaID
+     * @return
+     */
+    @GetMapping("getFixedAreaByAreaId/{areaid}")
+    public Result getFixedAreaByAreaId(@PathVariable("areaid") String areaID){
+        return fixedAreaService.getFixedAreaByAreaId(areaID);
+    }
 }

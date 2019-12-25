@@ -15,4 +15,6 @@ public interface FixedAreaService {
     Result deleteFixedArea(FixedArea fixedArea);
 
     Result getFixeArea();
+
+    Result getFixedAreaByAreaId(String areaID);
 }

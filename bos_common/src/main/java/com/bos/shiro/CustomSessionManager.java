@@ -10,7 +10,7 @@ import javax.servlet.ServletResponse;
 import java.io.Serializable;
 
 /**
- * sessionManager——Shiro的会话管理器
+ * sessionManager——自定义Shiro的会话管理器
  * 继承 DefaultWebSessionManager
  */
 public class CustomSessionManager extends DefaultWebSessionManager {

@@ -16,7 +16,7 @@ public class CorsConfiguration extends WebMvcConfigurationSupport {
                 .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
                 .allowedOrigins("*")
                 .allowedHeaders("*")
-                .allowCredentials(true) //响应头表示是否可以将对请求的响应暴露给页面。返回true则可以,其他值均不可以。
+                .allowCredentials(true)
                 .maxAge(3600);
         super.addCorsMappings(registry);
     }

@@ -1,5 +1,7 @@
 package com.bos.filter;
 
+import com.bos.execption.MyException;
+import com.bos.response.ResultCode;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +22,8 @@ public class ShiroFilter extends FormAuthenticationFilter {
     public ShiroFilter() {
         super();
     }
+
+
     /**
      * 解决OPTIONS请求的问题
      * @param request
@@ -48,14 +52,16 @@ public class ShiroFilter extends FormAuthenticationFilter {
      */
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-        HttpServletResponse res = (HttpServletResponse)response;
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        res.setStatus(HttpServletResponse.SC_OK);
-        res.setCharacterEncoding("UTF-8");
-        PrintWriter writer = res.getWriter();
-
-        writer.write("  no no no");
-        writer.close();
+        HttpServletResponse res = (HttpServletResponse) response;
+//        res.setHeader("Access-Control-Allow-Origin", "*");
+//        res.setStatus(HttpServletResponse.SC_OK);
+//        res.setCharacterEncoding("UTF-8");
+//        PrintWriter writer = res.getWriter();
+//
+//        writer.write("  no no no");
+//        writer.close();
+        HttpServletRequest httpServletRequest = (HttpServletRequest)request;
+        httpServletRequest.getRequestDispatcher("/autherror").forward(httpServletRequest,res);
         return false;
     }
 }

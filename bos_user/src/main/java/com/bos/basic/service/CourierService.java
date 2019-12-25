@@ -17,4 +17,6 @@ public interface CourierService {
     Result revCourier(Courier courier);
 
     Result batchCourier(Map<String, Object> map) throws MyException;
+
+    Result getCourierID();
 }

@@ -34,9 +34,7 @@ public class FixedArea implements Serializable {
     @TableField(value = "operator")
     private String operator; //操作人
 
-    @TableField(value = "principal")
-    private String principal;  //定区负责人
+    @TableField(value = "area_id")
+    private String areaID;//区域id
 
-    @TableField(value = "phone")
-    private String phone; //负责人电话号码
 }

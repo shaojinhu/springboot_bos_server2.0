@@ -1,11 +1,14 @@
 package com.bos.shiro;
 
+import com.bos.execption.MyException;
 import com.bos.pojo.user.Role;
 import com.bos.pojo.user.User;
 import com.bos.response.ProfileResult;
+import com.bos.response.ResultCode;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -29,8 +32,10 @@ public class MyRealm extends AuthorizingRealm {
      * @return
      */
     @Override
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) throws AuthorizationException {
         User user = (User)principalCollection.getPrimaryPrincipal();
+        //String username =  principalCollection.getPrimaryPrincipal().toString();
+
         ProfileResult profileResult = new ProfileResult(user);
         //获取角色集合
         //Set<String> roles = (Set<String>)profileResult.getMap().get("roles");

@@ -39,4 +39,13 @@ public class Area implements Serializable {
 
     @TableField(value = "brevity_code")
     private String brevityCode; //简码
+
+    public Area(String city, String cityCode, String district, String postCode, String province, String brevityCode) {
+        this.city = city;
+        this.cityCode = cityCode;
+        this.district = district;
+        this.postCode = postCode;
+        this.province = province;
+        this.brevityCode = brevityCode;
+    }
 }

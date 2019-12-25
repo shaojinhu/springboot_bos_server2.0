@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ErrorController {
 
 
-    @GetMapping("autherror")
+    @GetMapping("/autherror")
     public Result autherror(){
         return new Result(ResultCode.AUTHERROR);
     }

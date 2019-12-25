@@ -46,4 +46,6 @@ public interface CourierMapper extends BaseMapper<Courier> {
             " </foreach> " +
             " </script> ")
     void updateByID(@Param("list")List<Courier> couriers,@Param("standardId")String standardId,@Param("taketimeId")String taketimeId);
+
+
 }

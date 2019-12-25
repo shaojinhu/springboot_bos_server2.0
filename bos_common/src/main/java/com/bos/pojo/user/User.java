@@ -27,6 +27,10 @@ import java.util.Set;
 @Table(name = "user")
 public class User implements Serializable {
 
+    public String getUserid() {
+        return userid;
+    }
+
     @Id
     @TableId(value = "userid",type= IdType.ID_WORKER)
     private String userid;
@@ -46,6 +50,14 @@ public class User implements Serializable {
     @Column(name = "depaid")
     @TableField(value = "depaid")
     private String depaId;
+
+    @Column(name = "phone")
+    @TableField(value = "phone")
+    private String phone;
+
+    @Column(name = "mail")
+    @TableField(value = "mail")
+    private String mail;
 
     /**
      * 用于映射user_role表

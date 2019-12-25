@@ -22,4 +22,10 @@ public interface UserService {
     Result getUserList(Map<String, String> map);
 
     User getUserByUsername(String username);
+
+    Result sendMailNumber(String mail, String usernname);
+
+    Result updatePasswordByMail(Map<String, String> map) throws MyException;
+
+    Result updatePassword(Map<String, String> map);
 }

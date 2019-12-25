@@ -12,6 +12,19 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 
 
+  redis:
+    #    使用lettuce要导入依赖否则报错  lettuce连接池比 jedis连接池性能快
+    lettuce:
+      pool:
+        max-active: 10  #配置最大连接个数
+        min-idle: 5     #更多配置去springboot官网appendinx查看redis配置
+        max-idle: 8
+        max-wait: 6000ms
+    host: 127.0.0.1 #连接地址
+    database: 1     #操作第几个数据库
+    #password:   #没有密码就可以不配置
+    port: 6379
+
   jpa:
     database: mysql #指定数据库
     show-sql: true #打印sql
@@ -20,6 +33,13 @@ spring:
     properties:
       hibernate:
         format_sql: true  #格式化SQL
+
+  mail:
+    password: vimsdzryiqobjagi #授权码
+    username: 1585273221@qq.com #发送者
+    host: smtp.qq.com  #qq邮箱类型
+    default-encoding: UTF-8  #字符编码
+
 
 mybatis-plus:
   configuration:

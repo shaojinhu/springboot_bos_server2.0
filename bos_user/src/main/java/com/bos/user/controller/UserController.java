@@ -39,6 +39,7 @@ public class UserController {
             //进行方法
             SecurityUtils.getSubject().login(usernamePasswordToken);
             //获得sessionID
+            //SecurityUtils.getSubject().getSession().setTimeout(10000L);设置sesion的过期时间
             String sessionId =(String)SecurityUtils.getSubject().getSession().getId();
             return new Result(ResultCode.SUCCESS,sessionId);
         } catch (AuthenticationException e) {
@@ -47,11 +48,13 @@ public class UserController {
         }
     }
 
+
     /**
      * 获取用户User的权限Permission
      * @return
      * @throws MyException
      */
+
     @RequestMapping(value = "/getPermission",method = RequestMethod.POST)
     public  Result getPermission(){
         //获得主体
@@ -104,5 +107,29 @@ public class UserController {
     @DeleteMapping("deleteUser")
     public Result deleteUser(@RequestBody User user){
         return userService.deleteUser(user);
+    }
+
+    /**
+     * 邮箱验证码
+     */
+    @GetMapping("sendMailNumber/{mail}/{username}")
+    public Result sendMailNumber(@PathVariable("mail")String mail,@PathVariable("username")String username){
+        return userService.sendMailNumber(mail,username);
+    }
+
+    /**
+     * 邮箱验证码修改密码
+     * @param map
+     * @return
+     * @throws MyException
+     */
+    @PostMapping("updatePasswordByNumber")
+    public Result updatePasswordByNumber(@RequestBody Map<String,String> map) throws MyException {
+        return userService.updatePasswordByMail(map);
+    }
+
+    @PostMapping("updatePassword")
+    public Result updatePassword(@RequestBody Map<String,String> map){
+        return userService.updatePassword(map);
     }
 }

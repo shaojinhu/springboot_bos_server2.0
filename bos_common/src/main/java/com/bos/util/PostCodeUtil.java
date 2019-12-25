@@ -9,6 +9,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 
+/**
+ * 根据地址名称获得邮编
+ */
 @Slf4j
 public class PostCodeUtil {
 
